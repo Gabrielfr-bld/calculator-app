@@ -6,7 +6,7 @@ class Button extends Component {
     const { label, operation, double, triple, click } = this.props;
     return (
         <button
-          onClick={e => click(label)} 
+          onClick={e => click && click(label)} 
           className={`
             button
             ${operation ? 'operation' : ''}
