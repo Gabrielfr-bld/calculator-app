@@ -36,10 +36,35 @@ class Calculator extends Component {
       const currentOperation = this.state.operation;
 
       const values = [...this.state.values]
-      try {
-        values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`);
-      } catch (e) {
-       values[0] = this.state.values[0] 
+      
+      switch(operation) {
+        case '+':
+          values[0] = values[0] + values[1]
+          values[1] = 0
+          break;
+        case '-':
+          values[0] = values[0] - values[1]
+          values[1] = 0
+          break;
+        case '*':
+          values[0] = values[0] * values[1]
+          values[1] = 0
+          break;
+        case '/':
+          values[0] = values[0] / values[1]
+          values[1] = 0
+          break;
+        case '=':
+          try {
+            values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
+            values[1] = 0 
+          } catch (error) {
+            values[0] = this.state.values[0]
+          }
+          break;        
+        default:
+          console.log('Operação inválida');
+        
       }
       values[1] = 0;
 
